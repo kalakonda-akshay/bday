@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD JEEVA AKKA | Special Surprise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        :root { --primary: #ff4081; --bg: #fff0f3; }
+        body { margin: 0; padding: 0; font-family: 'Poppins', sans-serif; background: var(--bg); overflow: hidden; height: 100vh; color: #444; }
+        
+        .page { height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; position: absolute; transition: 0.8s ease-in-out; }
+        .hidden { opacity: 0; transform: scale(0.9) translateY(30px); pointer-events: none; }
+
+        .card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); padding: 25px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 85%; max-width: 400px; text-align: center; border: 1px solid white; box-sizing: border-box; }
+        
+        .btn-main { background: var(--primary); color: white; border: none; padding: 15px 40px; border-radius: 50px; font-size: 1.2rem; cursor: pointer; font-weight: 600; margin-top: 15px; box-shadow: 0 5px 15px rgba(255, 64, 129, 0.3); }
+
+        /* Cake & Candle */
+        .cake { position: relative; width: 180px; height: 150px; cursor: pointer; margin: 15px 0; }
+        .layer { position: absolute; left: 50%; transform: translateX(-50%); border-radius: 15px 15px 5px 5px; }
+        .l3 { bottom: 0; width: 170px; height: 45px; background: #e91e63; }
+        .l2 { bottom: 40px; width: 130px; height: 40px; background: #f06292; }
+        .l1 { bottom: 75px; width: 90px; height: 35px; background: #ff80ab; }
+        .candle { width: 8px; height: 30px; background: white; position: absolute; top: 15px; left: 50%; transform: translateX(-50%); z-index: 10; background: repeating-linear-gradient(45deg, #eee, #eee 5px, #ff4081 5px, #ff4081 10px); }
+        .flame { width: 12px; height: 18px; background: #ffca28; border-radius: 50% 50% 20% 20%; position: absolute; top: -18px; left: -2px; box-shadow: 0 0 10px #ffa000; animation: flicker 0.6s infinite alternate; }
+        @keyframes flicker { from { transform: scale(1); } to { transform: scale(1.2); } }
+
+        /* Carousel Fix */
+        .carousel { width: 100%; height: 260px; position: relative; overflow: hidden; border-radius: 15px; border: 4px solid white; margin: 15px 0; background: #000; display: flex; justify-content: center; align-items: center; }
+        .carousel img { width: 100%; height: 100%; object-fit: contain; position: absolute; opacity: 0; transition: opacity 0.8s ease-in-out; left: 0; top: 0; }
+        .carousel img.active { opacity: 1; }
+
+        h1 { font-family: 'Dancing Script', cursive; font-size: 2.2rem; color: #d81b60; margin: 10px 0; }
+        .msg-text { font-size: 0.95rem; color: #555; line-height: 1.4; margin: 8px 0; }
+        .quote-text { font-family: 'Dancing Script', cursive; font-size: 1.3rem; color: #ff4081; display: block; margin: 10px 0; }
+        .funny-tag { font-weight: bold; color: #d81b60; font-size: 1.3rem; display: block; margin-top: 10px; animation: bounce 1s infinite; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    </style>
+</head>
+
+<body>
+
+    <audio id="bdaySong" loop preload="auto">
+        <source src="hbd.mp3.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="p1" class="page">
+        <div class="card">
+            <h2 style="color: #d81b60;">Hello Jeeva Akka! 👋</h2>
+            <p class="msg-text">
+                "Nenu Akshay, Roll No. 49... <br>
+                Nen gift isthanante vaddhu annav ga, andhuke oka chinna surprise naa tharupa nunchi !"
+            </p>
+            <button class="btn-main" onclick="startSurprise()">Open it! 🎁</button>
+        </div>
+    </div>
+
+    <div id="p2" class="page hidden">
+        <h2 style="color: #d81b60; font-family: 'Dancing Script', cursive;">Happy 18th Birthday, Jeeva Akka! 🎂</h2>
+        <div class="cake" onclick="cutCake()">
+            <div class="candle"><div class="flame" id="flame"></div></div>
+            <div class="layer l1"></div>
+            <div class="layer l2"></div>
+            <div class="layer l3"></div>
+        </div>
+        <p style="color: #888;">Touch the cake to cut it!</p>
+    </div>
+
+    <div id="p3" class="page hidden">
+        <div class="card">
+            <h1>Happy Birthday Jeeva Akka! 🥳</h1>
+            <div class="carousel" id="photoCarousel">
+                <img src="jiva bday/pic1.jpg.jpeg" class="active">
+                <img src="jiva bday/pic2.jpg.jpeg">
+                <img src="jiva bday/pic3.jpg.jpeg">
+                <img src="jiva bday/pic4.jpg.jpeg">
+            </div>
+            <p class="msg-text">
+                "Eww Officially adult ayipoyav! <br>
+                party ledhamari"
+                <span class="quote-text">'May you achieve all your dreams and ambitions in life!'</span>"
+            </p>
+            <hr style="border: 0; border-top: 1px solid #eee;">
+            <p class="msg-text">
+                Entha emotional ga cheppina nuvvu maathram eppatiki ma...
+                <span class="funny-tag">PEDDHA PANDHI 🐷</span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const song = document.getElementById('bdaySong');
+
+        function startSurprise() {
+            song.play().catch(e => console.log("Audio blocked. Wait for interaction."));
+            document.getElementById('p1').classList.add('hidden');
+            document.getElementById('p2').classList.remove('hidden');
+        }
+
+        function cutCake() {
+            document.getElementById('flame').style.display = 'none';
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+            
+            setTimeout(() => {
+                document.getElementById('p2').classList.add('hidden');
+                document.getElementById('p3').classList.remove('hidden');
+                startCarousel();
+            }, 1200);
+        }
+
+        function startCarousel() {
+            const images = document.querySelectorAll('#photoCarousel img');
+            let index = 0;
+            if(images.length > 1) {
+                setInterval(() => {
+                    images[index].classList.remove('active');
+                    index = (index + 1) % images.length;
+                    images[index].classList.add('active');
+                }, 3000);
+            }
+        }
+    </script>
+</body>
+</html>
